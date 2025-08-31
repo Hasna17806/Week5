@@ -6,6 +6,11 @@
 // }, 2000);
 // console.log("Third");
 
+console.log("Hello");
+setTimeout(() => {
+    console.log("Second");
+})
+console.log("Third");
 //--------------synchronous----------
 
 // console.log("Hello");
@@ -240,6 +245,18 @@
 
 //----------------shallow copy------------------
 
+// let names =["Hasna", "Wafa", "Fathima"];
+// let shallowCopy = names;
+
+// shallowCopy.push("Aysha");
+// shallowCopy[1]="Sana";
+// shallowCopy.splice(2,1, "Safa");
+
+// console.log("Orginal:", names);
+// console.log("Shallow copy", shallowCopy);
+
+//--------------------------------------
+
 // let fruits = ["Banana", "Apple", "Grape"];
 
 // let shallowCopy = fruits;
@@ -251,17 +268,6 @@
 // console.log("Orginal:",fruits);
 // console.log("Shallow copy", shallowCopy);
 
-
-//---------------------------------------------
-// let names =["Hasna", "Wafa", "Fathima"];
-// let shallowCopy = names;
-
-// shallowCopy.push("Aysha");
-// shallowCopy[1]="Sana";
-// shallowCopy.splice(2,1, "Safa");
-
-// console.log("Orginal:", names);
-// console.log("Shallow copy", shallowCopy);
 
 //--------------deep copy-----------------
 //---------using spread method
@@ -396,14 +402,229 @@
 
 //--------------Generator function----------------
 
-function* myGenerator() {
-    yield "Hello";
-    yield "World";
-    yield "!";
-}        
+//----for example--Normal function---
 
-let gen = myGenerator();
+// function normalfunc() {
+//     console.log("Start");
+//     console.log("Middle");
+//     console.log("End");
+// } normalfunc();
 
-console.log(gen.next());
-console.log(gen.next());
-console.log(gen.next());
+//-----------Generator------------
+
+//EG:-1
+
+// function* myGenerator() {
+//     yield "Hello";
+//     yield "World";
+//     yield "!";
+// }        
+
+// let gen = myGenerator();
+
+// console.log(gen.next());
+// console.log(gen.next());
+// console.log(gen.next());
+// console.log(gen.next());
+
+//EG:-2
+
+// function* Generator () {
+//     console.log("Start");
+//     yield "Paused here";
+//     console.log("Middle");
+//     yield "Paused again";
+//     console.log("End");
+// } 
+//   let gen = Generator();
+
+//   console.log(gen.next());
+//   console.log(gen.next());
+//   console.log(gen.next());
+
+//------Iterating a Generator----------
+
+// function* numbers () {
+//     yield 1;
+//     yield 2;
+//     yield 3;
+// }
+// for(let num of numbers()) {
+//     console.log(num);
+
+// }
+
+//-----------------------------------
+// function*counter (limit) {
+//     for (i = 1; i <= limit; i++) {
+//         yield i;
+//     }
+// }
+
+// for (let num of counter(5)) {
+//     console.log(num);
+// }
+
+//--------------Infinite Generators-------------------
+
+// function*infiniteGenerator() {
+//     let i = 1;
+//     while (true) {
+//         yield i++;
+//     }
+// }
+ 
+//  let counter = infiniteGenerator();
+//  console.log(counter.next().value);
+//   console.log(counter.next().value);
+//  console.log(counter.next().value);
+//  console.log(counter.next().value);
+//  console.log(counter.next().value);
+//  console.log(counter.next().value);
+//  console.log(counter.next().value);
+//  console.log(counter.next().value);
+
+//------------------Normal vs Curried---------------------
+
+//---normal----
+
+// function add (a, b) {
+//     return a + b    
+    
+// } 
+//         console.log(add(2,3));
+
+///----curried----
+
+// function add (a) {
+//     return function (b) {
+//         return a + b;
+//     }
+// }
+//  console.log(add(2)(5));
+
+//----Multiplication Example---
+
+// function multiply (a) {
+//     return function(b) {
+//         return a * b;
+//     }
+// }
+//  console.log(multiply(4)(5));
+
+//----------Example 3: Three Arguments
+
+// function sum(a){
+//     return function(b){
+//         return function(c) {
+//             return a + b + c;
+//         }
+//     }
+// }
+// console.log(sum(1)(2)(3));
+
+//-----you can reuse the code
+// let add10 = add(10);
+// console.log(add10(9));     //❌didn't get the output
+// console.log(add10(6));
+
+
+//-----------------Callback-------------------
+
+// function greet (name, callback) {
+// console.log("Hello " + name);
+// callback();
+// }
+// function sayBye (){
+//     console.log("GoodBye");
+// }
+// greet("Hasna",sayBye);
+
+//----------Anonymous Function as Callback---------
+
+// function greet(name, callback) {
+//     console.log("Hello " + name);
+//     callback();
+// }
+// greet ("Hasna", function(){
+//     console.log("Anonymous function");
+// });
+
+//-------------Real-World (setTimeout) callback-------------------
+
+// setTimeout(function() {
+//     console.log("Runs after two seconds");
+// },2000);
+
+//---------we can reuse
+
+// function greet (name, callback){
+//     console.log("Hello " + name);
+//     callback();
+// } 
+// greet("Hasna" ,function() {
+//   console.log("Good morning");
+// });
+
+// greet("Fathima", function(){
+//     console.log("Have a nice day");
+// });
+
+// greet("Alice", function(){
+//     console.log("See you tomorrow");
+// });
+
+//-------------Asynchronous Work-------------------
+
+// setTimeout(function() {
+//     console.log("This will print after 2 secs");
+// }, 2000);
+// console.log("This will print first");
+
+//--------------- Creating Promises-------------------
+
+// let promise = new Promise (function(resolve, reject) {
+//     let success = false;
+//     if (success) {
+//       console.log("Task completed");
+//     } else {
+//         console.log("Something went wrong");
+//     }
+// });
+//-------Handling a Promise
+// promise
+// .then(function(result){
+//     console.log(result);
+// })
+// .catch(function(error){
+//     console.log(error);
+// });
+
+//---------------Example 3: Promise with setTimeout-----------------
+
+// let promise = new Promise(function(resolve, rejection){
+//     setTimeout(() => resolve("Data Recieved" ), 2000);
+// });
+// promise.then(result => console.log(result)); 
+
+//-----------------------------------------------------------
+
+// let promise = new Promise(function(resolve, rejection) {
+//     setTimeout(() => rejection("Failed"), 1000);
+// });
+// promise.catch(result => console.log(result));
+
+//---------------Example 4: Chaining Promises-----------------
+
+// let promise = new Promise(resolve => resolve(2));
+// promise
+// .then(num => num * 2)
+// .then(num => num + 5)
+// .then(result => console.log(result));
+
+// let promise = new Promise (resolve => resolve(5));
+// promise
+// .then(num => num - 3)
+// .then(num => num + 1)
+// .then(num => num * 2)
+// .then(result => console.log(result));
