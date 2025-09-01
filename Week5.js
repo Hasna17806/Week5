@@ -1,16 +1,11 @@
 //----------------Asynchronous------------------
 
-// console.log("First");
-// setTimeout(() => {
-//   console.log("Second");
-// }, 2000);
-// console.log("Third");
-
-console.log("Hello");
+console.log("Start");
 setTimeout(() => {
-    console.log("Second");
-})
-console.log("Third");
+    console.log("This will print after 2 seconds");
+},2000 );
+console.log("End")
+
 //--------------synchronous----------
 
 // console.log("Hello");
@@ -119,18 +114,26 @@ console.log("Third");
 //   console.log(bigData);
 // }  noleak();
 
+//------------------------------------------
+
 // setInterval(() => {
 //   console.log("Still running...");
 // }, 1000);
 
+//------------------------------------------------------
+
 // let id = setInterval(() => {
 //   console.log("Tick Tick");
 // },1000);
+
+//---------------------------------------
+
 // setTimeout(() => {
 //   clearInterval(id);
 //   console.log("Stopped");
 // }, 10000);
 
+//---------------------------------------
 
 // let timer = setTimeout(() => {
 //     console.log("ONLY ONCE");
@@ -628,3 +631,9 @@ console.log("Third");
 // .then(num => num + 1)
 // .then(num => num * 2)
 // .then(result => console.log(result));
+
+function greet(){
+    return 12 ;
+}
+const result = greet();
+console.log(result);
