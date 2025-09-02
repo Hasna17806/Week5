@@ -1,10 +1,10 @@
 //----------------Asynchronous------------------
 
-console.log("Start");
-setTimeout(() => {
-    console.log("This will print after 2 seconds");
-},2000 );
-console.log("End")
+// console.log("Start");
+// setTimeout(() => {
+//     console.log("This will print after 2 seconds");
+// },2000 );
+// console.log("End")
 
 //--------------synchronous----------
 
@@ -38,8 +38,8 @@ console.log("End")
 
 //  "use strict"
 
-//  console.log(x);
 //  let x = 12;
+//   console.log(x)
 
 //------------shadows------------
 
@@ -66,8 +66,7 @@ console.log("End")
 // }
 // console.log(x);
 
-//      or
-
+// //      or         
 
 // var x = 13;
 // {
@@ -125,9 +124,6 @@ console.log("End")
 // let id = setInterval(() => {
 //   console.log("Tick Tick");
 // },1000);
-
-//---------------------------------------
-
 // setTimeout(() => {
 //   clearInterval(id);
 //   console.log("Stopped");
@@ -146,7 +142,7 @@ console.log("End")
 //             repeat();
 
 
-// } greet ();
+// } repeat ();
 
 //-----------stack underflow----------
 
@@ -190,6 +186,7 @@ console.log("End")
 
 // car1.start();
 // car2.start();
+
 // //----------------------------------------------------------------------------------------------------------------------------
 
 // class student {
@@ -210,6 +207,7 @@ console.log("End")
 // student2.introduce();
 
 // student3.introduce();
+
 // //--------------------------------------------------------------------------------
 
 // class Animal {
@@ -227,9 +225,7 @@ console.log("End")
 // animal1.makesound();
 // animal2.makesound();
 
-
 //----------------Create instances---------------------------
-
 
 // class Phone {
 //     constructor(brand,model){
@@ -272,7 +268,7 @@ console.log("End")
 // console.log("Shallow copy", shallowCopy);
 
 
-//--------------deep copy-----------------
+//             ❌❌❌❌
 //---------using spread method
 
 // let Animals = ["Cow", "Cat", "Dog"];
@@ -305,16 +301,38 @@ console.log("End")
 // console.log(nums);
 // console.log(deepCopy);
 
+//            ❌❌❌❌
+
+//--------------deep copy-----------------
+
+let person = {
+  name :"Hasna",
+  address : {
+   City: "Kerala",
+   Country : "India"
+  }
+};
+
+let deepCopy = JSON.parse(JSON.stringify (person));
+
+deepCopy.address.city ="Karnataka";
+console.log("Orginal:" ,person.address.City);
+console.log("deepCopy:" , deepCopy.address.City);
+
 //------------Memoized-------------
 
 //--------normal in javascript
-// function add (a, b){
-//     console.log("Calculating...");
-//     return a +b;
-// }
-// console.log(add(2,3));
-// console.log(add(2,3));
-//_______________(Every time we call add(2,3), it recalculates.This is not efficient.)_______________________
+
+function add (a, b){
+    console.log("Calculating...");
+    return a +b;
+}
+console.log(add(2,3));
+console.log(add(2,3));
+
+
+
+//_______________(Every time we call add(2,3), it recalculates.This is not efficient.)__________________
 
 //---------Memoized Version--------
 
@@ -338,6 +356,9 @@ console.log("End")
 // console.log(add(2,3));
 // console.log(add(2,3));
 // console.log(add(4,8));
+
+
+
 
 //--------memoized reverse
 
@@ -366,6 +387,7 @@ console.log("End")
 //     let name = "Fathima";   //___memory allocates
 //     console.log(name);
 // } demo();
+
 //___After demo() finishes, "Fathima" has no references → GC frees it (Deallocates)___
 
 //----------Constructor Functions (Old Style)-----------
@@ -430,6 +452,7 @@ console.log("End")
 // console.log(gen.next());
 // console.log(gen.next());
 
+
 //EG:-2
 
 // function* Generator () {
@@ -456,6 +479,15 @@ console.log("End")
 //     console.log(num);
 
 // }
+  
+function numbers (){
+  yield 1;
+  yield 2;
+  yield 3;
+}
+for ( let num of numbers()) {
+  console.log(num);
+}
 
 //-----------------------------------
 // function*counter (limit) {
@@ -487,6 +519,7 @@ console.log("End")
 //  console.log(counter.next().value);
 //  console.log(counter.next().value);
 
+
 //------------------Normal vs Curried---------------------
 
 //---normal----
@@ -505,6 +538,12 @@ console.log("End")
 //     }
 // }
 //  console.log(add(2)(5));
+
+function add(a, b) {
+  return a + b;
+}
+add();
+console.log(add(2,3));
 
 //----Multiplication Example---
 
@@ -594,7 +633,7 @@ console.log("End")
 //         console.log("Something went wrong");
 //     }
 // });
-//-------Handling a Promise
+                                                           //Handling a Promise
 // promise
 // .then(function(result){
 //     console.log(result);
@@ -605,15 +644,15 @@ console.log("End")
 
 //---------------Example 3: Promise with setTimeout-----------------
 
-// let promise = new Promise(function(resolve, rejection){
+// let promise = new Promise(function(resolve, reject){
 //     setTimeout(() => resolve("Data Recieved" ), 2000);
 // });
 // promise.then(result => console.log(result)); 
 
 //-----------------------------------------------------------
 
-// let promise = new Promise(function(resolve, rejection) {
-//     setTimeout(() => rejection("Failed"), 1000);
+// let promise = new Promise(function(resolve, reject) {
+//     setTimeout(() => reject("Failed"), 1000);
 // });
 // promise.catch(result => console.log(result));
 
@@ -632,8 +671,22 @@ console.log("End")
 // .then(num => num * 2)
 // .then(result => console.log(result));
 
-function greet(){
-    return 12 ;
-}
-const result = greet();
-console.log(result);
+//----------------------------------------------------------
+
+// function greet(){
+//     return 12 ;
+// }
+// const result = greet();
+// console.log(result);
+
+//--------------async-await---------------
+
+// function delay () {
+//    return new Promise (resolve => setTimeout(() => resolve("Finished")),4000);
+// }
+// async function demo () {
+//     console.log("Start");
+//     let result = await delay(); 
+//     console.log(result)
+//     console.log("End");   
+//     } demo();
